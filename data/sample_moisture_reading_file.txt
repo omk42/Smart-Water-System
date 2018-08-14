@@ -1,0 +1,36 @@
+#######################################
+#
+# Smart Water System
+# 
+# File Name      :  sensor_reading.py
+#
+# Author         :  Omkar Pathak
+# Contact email  :  opathak@uci.edu
+# Faculty Mentor :  Quoc Viet Dang
+#
+# Description    : 
+#
+# Created on     : 
+#
+# Abbrevations   :  R1- Resistive 1
+#	            C1- 
+#
+########################################
+
+Reading at <time stamp>
+____________________________________
+  R1    |  C1    |  C2    |  C3    |
+------------------------------------
+  1212  |  1223  |  12    |  12    |
+  1212  |  12122 |  12122 |  133   |
+------------------------------------
+____________________________________
+ 
+ Plant Watered!
+ Time     : <time stamp>
+ Quanity  : 
+ ____________________________________
+ 
+
+ 
+ 

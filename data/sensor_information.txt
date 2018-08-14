@@ -1,0 +1,24 @@
+
+#######################################
+#
+# Smart Water System
+# 
+# File Name      :  sensor_information.txt
+#
+# Author         :  Omkar Pathak
+# Contact email  :  opathak@uci.edu
+# Faculty Mentor :  Quoc Viet Dang
+#
+# Description    :  Abbrevations used in  
+#                   sensor_reading.txt
+#
+# Created on     : 4/28/2018
+#
+########################################
+
+
+C1- Port 0- Capacitive sensor with cable length 54 cm 
+C2- Port 1- Capacitive sensor with cable length 23 cm
+C3- Port 2- Capacitive sensor with cable length 40.5 cm
+
+R1- Port 3- Resistor sensor 
