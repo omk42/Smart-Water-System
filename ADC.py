@@ -119,8 +119,8 @@ def write_watered(file, sensor_lst):
 
 if __name__ == "__main__":
 
-    file_path_txt = "./Desktop/Smart-Water-System/data/sensor_reading.txt"
-    file_path_csv = "./Desktop/Smart-Water-System/data/sensor_reading.csv"
+    file_path_txt = "data/sensor_reading.txt"
+    file_path_csv = "data/sensor_reading.csv"
     
     #file_path_txt = "sensor_reading.txt"
     #file_path_csv = "sensor_reading.csv"
