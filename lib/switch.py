@@ -1,6 +1,6 @@
 import RPIO
 import time
-import Led from Led
+from Led import Led
 
 
 class Switch:
@@ -35,6 +35,6 @@ class Switch:
 
 
 if __name__ == "__main__":
-    RPIO.setmode(RPIO.BOARD)
+    #RPIO.setmode(RPIO.BOARD)
     Switch(4).run(17)
     RPIO.cleanup()
