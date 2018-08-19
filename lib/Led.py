@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import RPi.GPIO as GPIO
 import sys
+import time
 
 class Led:
     def __init__(self, output_pin:int):
@@ -11,14 +12,12 @@ class Led:
     def _setup(self):
         GPIO.setup(self._output_pin, GPIO.OUT, initial= GPIO.LOW)
 
-    def start_blink(self):
-        counter = 0
+    def start_blink(self, value):
         while True:
             self.turn_on()
-            counter += 1
-            if counter == 100:
-                self.turn_off()
-                counter = 0
+            time.sleep(0.5)
+            self.turn_off()
+            time.sleep(0.5)
 
     def stop_blink(self):
         self.turn_off()
@@ -32,8 +31,9 @@ class Led:
 
 if __name__ == "__main__":
     try:
+        GPIO.setmode(GPIO.BOARD)
         Led_obj = Led(11)
-        Led_obj.turn_on()
-        GPIO.cleanup()
+        Led_obj.start_blink()
     except KeyboardInterrupt:
+        GPIO.cleanup()
         sys.exit()
