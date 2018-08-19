@@ -1,13 +1,15 @@
-import RPIO
+#!/usr/bin/env python
+import RPi.GPIO as GPIO
+import sys
 
 class Led:
-    def __init__ (self, output_pin:int):
+    def __init__(self, output_pin:int):
         self._output_pin = output_pin
         self.is_on = False
         self._setup()
 
     def _setup(self):
-        RPIO.setup(self._output_pin, RPIO.OUT, initial = RPIO.LOW)
+        GPIO.setup(self._output_pin, GPIO.OUT, initial= GPIO.LOW)
 
     def start_blink(self):
         counter = 0
@@ -22,12 +24,16 @@ class Led:
         self.turn_off()
 
     def turn_on(self):
-        RPIO.output(self._output_pin, True)
+        GPIO.output(self._output_pin, GPIO.HIGH)
 
     def turn_off(self):
-        RPIO.output(self._output_pin, False)
+        GPIO.output(self._output_pin, GPIO.LOW)
 
 
 if __name__ == "__main__":
-    Led_obj = Led(17)
-    print ("Hello world")
+    try:
+        Led_obj = Led(11)
+        Led_obj.turn_on()
+        GPIO.cleanup()
+    except KeyboardInterrupt:
+        sys.exit()

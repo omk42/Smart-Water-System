@@ -1,6 +1,8 @@
-import RPIO
+#!/usr/bin/env python
+import RPi.GPIO as GPIO
 import time
 from Led import Led
+import sys
 
 
 class Switch:
@@ -9,20 +11,20 @@ class Switch:
         self._setup()
 
     def _setup(self):
-        RPIO.setup(self._input_pin, RPIO.IN, pull_up_down=RPIO.PUD_UP)
+        GPIO.setup(self._input_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
     def switch_callback(self, gpio_id, value):
         if self.led_obj.is_on:
             self.led_obj.turn_off()
             self.led_obj.is_on = False
         else:
-            self.led_obj.turn_off()
+            self.led_obj.turn_on()
+            self.led_obj.is_on = True
 
     def run(self, LED_output_pin:int):
         #Led_blink = True
         self.led_obj = Led(LED_output_pin)
-        RPIO.add_interrupt_callback(self._input_pin, callback = self.switch_callback, edge = 'falling',  threaded_callback = True)
-        RPIO.wait_for_interrupts()
+        GPIO.add_event_detect(self._input_pin, GPIO.FALLING, callback = self.switch_callback,  bouncetime = 200)
 
         # while True:
         #     button_state = RPIO.input(self._input_pin)
@@ -35,6 +37,9 @@ class Switch:
 
 
 if __name__ == "__main__":
-    #RPIO.setmode(RPIO.BOARD)
-    Switch(4).run(17)
-    RPIO.cleanup()
+    try:
+        GPIO.setmode(GPIO.BOARD)
+        Switch(7).run(11)
+        GPIO.cleanup()
+    except KeyboardInterrupt:
+        sys.exit()
