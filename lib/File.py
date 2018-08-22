@@ -4,7 +4,6 @@ from pathlib import Path
 
 FIELD_NAMES = ["moisture_sensor_1", "moisture_sensor_2", "moisture_sensor_3", "moisture_sensor_4"]
 
-
 class File:
     def __init__(self, path:str):
         self._file_path = Path(path)
@@ -29,7 +28,6 @@ class File:
             self._close_file()
 
     def write_row(self, content:dict):
-        #print (self._file_path.suffix, type(self._file_path.suffix))
         if self._file_path.suffix == ".csv":
             self._open_file()
             writer = csv.DictWriter(self._file_obj, fieldnames=FIELD_NAMES)
