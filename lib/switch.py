@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 import RPi.GPIO as GPIO
-import time
 from Led import Led
 import sys
-
 
 class Switch:
     def __init__(self, input_pin:int):
@@ -22,7 +20,6 @@ class Switch:
             self.led_obj.is_on = True
 
     def run(self, LED_output_pin:int):
-        #Led_blink = True
         self.led_obj = Led(LED_output_pin)
         GPIO.add_event_detect(self._input_pin, GPIO.FALLING, callback = self.switch_callback,  bouncetime = 200)
         while True:
