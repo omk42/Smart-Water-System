@@ -27,7 +27,7 @@ CS   = 25
 mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
 
 #List that stores all the names of sensors.
-sensor_lst = ["C1(0)", "C2(1)", "C3(2)", "R1(3)"]
+sensor_lst = ["C1(0)", "C2(1)", "C3(2)", "C4(3)"]
 #sensor_lst = ["c1(0)"]
 
 #Counter for writing
@@ -143,12 +143,11 @@ if __name__ == "__main__":
         file_txt = open_file (file_path_txt)
         file_csv = open_file (file_path_csv)
         write_sensor_data(file_txt, file_csv, sensor_lst)
-        if button_pressed ():
-            print("entered")
-            write_line (file_txt, "")
-            write_watered(file_txt, sensor_lst)
-            make_table (file_txt, sensor_lst)
+        #if button_pressed ():
+        #    print("entered")
+        #    write_line (file_txt, "")
+        #    write_watered(file_txt, sensor_lst)
+        #    make_table (file_txt, sensor_lst)
         close_file(file_txt)
         close_file (file_csv)
         time.sleep (.1)
-        print("Successful transferred code on Github!!")
