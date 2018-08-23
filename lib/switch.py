@@ -22,14 +22,20 @@ class Switch:
     def run(self, LED_output_pin:int):
         self.led_obj = Led(LED_output_pin)
         GPIO.add_event_detect(self._input_pin, GPIO.FALLING, callback = self.switch_callback,  bouncetime = 200)
-        while True:
-            pass
+        #while True:
+        #    pass
+
+    def is_active(self):
+        return self.led_obj.is_on
 
 if __name__ == "__main__":
     try:
         GPIO.cleanup()
         GPIO.setmode(GPIO.BOARD)
-        Switch(7).run(11)
+        s = Switch(7)
+        s.run(11)
+        while True:
+            print (s.is_active())
     except KeyboardInterrupt:
         GPIO.cleanup()
         sys.exit()
