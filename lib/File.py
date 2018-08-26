@@ -2,9 +2,10 @@
 import csv
 from pathlib import Path
 
-FIELD_NAMES = ["id", "time",
-               "moisture_sensor_1", "moisture_sensor_2", "moisture_sensor_3", "moisture_sensor_4",
-               "average_moisture", "last_watering_time"]
+FIELD_NAMES = ["moisture_sensor_1", "moisture_sensor_2", "moisture_sensor_3", "moisture_sensor_4",
+               "average_moisture", "last_watering_time",
+               "temperature", "humidity", "time", "weather_code", "cloud_percent", "rain", "city"
+               "watered"]
 
 class File:
     def __init__(self, path:str):
