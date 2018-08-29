@@ -30,7 +30,7 @@ class Switch:
 
     def run(self, LED_output_pin:int):
         self.led_obj = Led(LED_output_pin)
-        GPIO.add_event_detect(self._input_pin, GPIO.FALLING, callback = self.switch_callback,  bouncetime = 200)
+        GPIO.add_event_detect(self._input_pin, GPIO.FALLING, callback = self.switch_callback,  bouncetime = 500)
 
     def is_active(self):
         return self.led_obj.is_on

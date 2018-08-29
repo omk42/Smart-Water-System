@@ -12,7 +12,7 @@ class Water_System:
     # Pins
     push_button = 7
     led = 11
-    path = "../data/sensor_reading.csv"
+    path = "./data/sensor_reading.csv"
 
     def __init__(self):
         self.lock = threading.Lock()

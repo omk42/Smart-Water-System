@@ -4,18 +4,19 @@ from pathlib import Path
 
 FIELD_NAMES = ["moisture_sensor_1", "moisture_sensor_2", "moisture_sensor_3", "moisture_sensor_4",
                "average_moisture", "last_watering_time",
-               "temperature", "humidity", "time", "weather_code", "cloud_percent", "rain", "city"
+               "temperature", "humidity", "time", "weather_code", "cloud_percent", "rain", "city",
                "watered"]
 
 class File:
     def __init__(self, path:str):
+        self._file_path_str = path
         self._file_path = Path(path)
 
     def _open_file(self):
-        try:
-            self._file_obj = open(self._file_path, 'a', newline = '')
-        except:
-            print("Error opening file : ", self._file_path)
+        #try:
+        self._file_obj = open(self._file_path_str, 'a', newline = '')
+        #except:
+        #    print("Error opening file : ", self._file_path)
 
     def _close_file(self):
         try:

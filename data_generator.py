@@ -28,5 +28,6 @@ class DataGenerator:
             else:
                 delay = 600
 
+            delay = 60
             self._water_system_obj.write_data(lock)
             time.sleep(delay)

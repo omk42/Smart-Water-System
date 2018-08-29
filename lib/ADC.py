@@ -1,14 +1,18 @@
 #!/usr/bin/env python
 import Adafruit_MCP3008
+from Adafruit_GPIO import RPiGPIOAdapter
+import RPi.GPIO
+
 from statistics import mean
 import time
 
 class ADC:
     # Software SPI configuration:
-    CLK = 18
-    MISO = 23
-    MOSI = 24
-    CS = 25
+    CLK = 12
+    MISO = 16
+    MOSI = 18
+    CS = 22
+    GPIO = RPiGPIOAdapter(RPi.GPIO, RPi.GPIO.BOARD)
 
     #Moisture value bounds
     LOWER = 400
@@ -20,7 +24,7 @@ class ADC:
     @staticmethod
     def sensor_val(type:str, pin:int):
         assert (pin in [0,1,2,3,4,5,6,7])
-        mcp = Adafruit_MCP3008.MCP3008(clk=ADC.CLK, cs=ADC.CS, miso=ADC.MISO, mosi=ADC.MOSI)
+        mcp = Adafruit_MCP3008.MCP3008(clk=ADC.CLK, cs=ADC.CS, miso=ADC.MISO, mosi=ADC.MOSI, gpio=ADC.GPIO)
         reading = mcp.read_adc(pin)
 
         #Error checking-
