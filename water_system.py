@@ -6,6 +6,7 @@ from data_generator import DataGenerator
 from lib.switch import Switch
 from lib.File import File
 
+DEBUG = True
 
 class Water_System:
 
@@ -27,7 +28,10 @@ class Water_System:
         GPIO.cleanup()
 
     def write_data(self,lock):
-        last_watered_time = time.time() - self.last_water_end_time
+        if self.last_water_end_time == 0:
+            last_watered_time = 0
+        else:
+            last_watered_time = time.time() - self.last_water_end_time
         with lock:
             File(Water_System.path).write_row(self.data_generator.collect_data(self.status, last_watered_time))
 

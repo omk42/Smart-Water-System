@@ -1,4 +1,5 @@
 import pyowm
+import time
 
 API = "04ea3b5a85a13541d2852b5d752618bc"
 
@@ -35,11 +36,10 @@ class Weather:
 
 
     def current(self):
-        ret_dict = dict(temperature=0, weather_code=0, humidity=0, cloud_percent=0, rain=0, city=0, time=0)
+        ret_dict = dict(temperature=0, weather_code=0, humidity=0, cloud_percent=0, rain=0, city=0)
         try:
             ret_dict["temperature"] = self.temperature()
             ret_dict["humidity"] = self.humidity()
-            ret_dict["time"] = self.time()
             ret_dict["weather_code"] = self.weather_code()
             ret_dict["cloud_percent"] = self.clouds()
             ret_dict["rain"] = self.rain()
@@ -54,7 +54,6 @@ if __name__ == "__main__":
 
     print(w.temperature())
     print(w.humidity())
-    print(w.time())
     print(w.weather_code())
     print(w.clouds())
     print(w.rain())

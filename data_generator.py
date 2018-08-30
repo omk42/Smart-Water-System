@@ -3,12 +3,17 @@ import time
 from lib.weather import Weather
 from lib.ADC import ADC
 
+#For debugging
+from water_system import DEBUG
+from lib.File import FIELD_NAMES
+
 class DataGenerator:
     def __init__(self, water_system_obj):
         self._water_system_obj = water_system_obj
 
     def collect_data(self, status, last_watered_time):
         weather_dict = Weather().current()
+        current_time = time.strftime("%Y-%m-%dT%H:%M:%S", time.gmtime())
         sensor_dict = dict()
         val1 = sensor_dict["moisture_sensor_1"] = ADC.sensor_val("capacitive", 0)
         val2 = sensor_dict["moisture_sensor_2"] = ADC.sensor_val("capacitive", 1)
@@ -18,7 +23,14 @@ class DataGenerator:
         sensor_dict.update(weather_dict)
         sensor_dict["watered"] = status
         sensor_dict["last_watering_time"] = last_watered_time
-        print (sensor_dict)
+        sensor_dict["time"] = current_time
+        sensor_dict["hour"] = time.strptime(current_time,"%Y-%m-%dT%H:%M:%S")[3]
+
+        if DEBUG:
+            for field in FIELD_NAMES:
+                print (field, " : ", sensor_dict[field], end = ", ")
+
+
         return sensor_dict
 
     def monitor_data(self, lock):
@@ -28,6 +40,8 @@ class DataGenerator:
             else:
                 delay = 600
 
-            delay = 60
+            if DEBUG:
+                delay = 0
+
             self._water_system_obj.write_data(lock)
             time.sleep(delay)
