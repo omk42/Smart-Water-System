@@ -4,8 +4,8 @@ from lib.weather import Weather
 from lib.ADC import ADC
 
 #For debugging
-from water_system import DEBUG
-from lib.File import FIELD_NAMES
+import water_system
+import lib.File as File
 
 class DataGenerator:
     def __init__(self, water_system_obj):
@@ -26,10 +26,10 @@ class DataGenerator:
         sensor_dict["time"] = current_time
         sensor_dict["hour"] = time.strptime(current_time,"%Y-%m-%dT%H:%M:%S")[3]
 
-        if DEBUG:
-            for field in FIELD_NAMES:
+        if water_system.DEBUG:
+            for field in File.FIELD_NAMES:
                 print (field, " : ", sensor_dict[field], end = ", ")
-
+            print ("\n\n")
 
         return sensor_dict
 
@@ -40,8 +40,8 @@ class DataGenerator:
             else:
                 delay = 600
 
-            if DEBUG:
-                delay = 0
+            if water_system.DEBUG:
+                delay = 5
 
             self._water_system_obj.write_data(lock)
             time.sleep(delay)

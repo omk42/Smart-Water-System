@@ -53,7 +53,7 @@ if __name__ == "__main__":
     val1 = ADC.sensor_val("capacitive", 0)
     val2 = ADC.sensor_val("capacitive", 1)
     val3 = ADC.sensor_val("capacitive", 2)
-    val4 = ADC.capacitance_sensor_val("", 3)
+    val4 = ADC.sensor_val("capacitive", 3)
 
     print("sensor moisture 1: ", val1)
     print("sensor moisture 2: ", val2)
