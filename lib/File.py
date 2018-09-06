@@ -3,6 +3,7 @@ import csv
 from pathlib import Path
 
 FIELD_NAMES = ["time", "hour","moisture_sensor_1", "moisture_sensor_2", "moisture_sensor_3", "moisture_sensor_4", "average_moisture",
+               "resistive_moisture",
                "temperature", "humidity", "weather_code", "cloud_percent", "rain", "city",
                "last_watering_time","watered"]
 

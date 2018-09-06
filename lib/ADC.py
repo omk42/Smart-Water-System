@@ -15,8 +15,10 @@ class ADC:
     GPIO = RPiGPIOAdapter(RPi.GPIO, RPi.GPIO.BOARD)
 
     #Moisture value bounds
-    LOWER = 400
-    UPPER = 900
+    CAPACITIVE_LOWER = 400
+    CAPACITIVE_UPPER = 900
+    RESISTIVE_LOWER = 0
+    RESISTIVE_UPPER = 0
 
     def __init__(self):
         pass
@@ -29,7 +31,7 @@ class ADC:
 
         #Error checking-
         if type == "capacitive":
-            if ADC.LOWER < reading < ADC.UPPER:
+            if ADC.CAPACITIVE_LOWER < reading < ADC.CAPACITIVE_UPPER:
                 return reading
             return 0
         elif type == "resistive":
@@ -54,13 +56,15 @@ if __name__ == "__main__":
     val2 = ADC.sensor_val("capacitive", 1)
     val3 = ADC.sensor_val("capacitive", 2)
     val4 = ADC.sensor_val("capacitive", 3)
+    val5 = ADC.sensor_val("resistive", 4)
 
     print("sensor moisture 1: ", val1)
     print("sensor moisture 2: ", val2)
     print("sensor moisture 3: ", val3)
     print("sensor moisture 4: ", val4)
+    print("sensor moisture 4: ", val5)
 
-    print ("Average moisture value: ", ADC.average_moisture([val1, val2, val3]))
+    print ("Average moisture value: ", ADC.average_moisture([val1, val2, val3, val4]))
 
     try:
         print (ADC.sensor_val("capacitive",99))
@@ -74,6 +78,8 @@ if __name__ == "__main__":
         val_2 = ADC.sensor_val ("capacitive", 1)
         val_3 = ADC.sensor_val ("capacitive", 2)
         val_4 = ADC.sensor_val ("capacitive", 3)
+        val_5 = ADC.sensor_val("resistive", 4)
+
         avg = ADC.average_moisture([val_1, val_2, val_3, val_4])
-        print (val_1, val_2, val_3, val_4, avg, sep = "  ")
+        print (val_1, val_2, val_3, val_4, val_5, avg, sep = "  ")
         time.sleep(1)
