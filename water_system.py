@@ -6,14 +6,14 @@ from data_generator import DataGenerator
 from lib.switch import Switch
 from lib.File import File
 
-DEBUG = True
+DEBUG = False
 
 class Water_System:
 
     # Pins
     push_button = 7
     led = 11
-    path = "./data/sensor_reading.csv"
+    path = "/home/pi/Desktop/Smart-Water-System/data/sensor_reading.csv"
 
     def __init__(self):
         self.lock = threading.Lock()
