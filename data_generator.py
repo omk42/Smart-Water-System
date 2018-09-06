@@ -28,10 +28,9 @@ class DataGenerator:
         sensor_dict["hour"] = time.strptime(current_time,"%Y-%m-%dT%H:%M:%S")[3]
 
 
-        if water_system.DEBUG:
-            for field in File.FIELD_NAMES:
-                print (field, " : ", sensor_dict[field], end = ", ")
-            print ("\n\n")
+        for field in File.FIELD_NAMES:
+            print (field, " : ", sensor_dict[field], end = ", ")
+        print ("\n\n")
 
         return sensor_dict
 
