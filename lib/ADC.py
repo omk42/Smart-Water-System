@@ -17,8 +17,8 @@ class ADC:
     #Moisture value bounds
     CAPACITIVE_LOWER = 400
     CAPACITIVE_UPPER = 900
-    RESISTIVE_LOWER = 0
-    RESISTIVE_UPPER = 0
+    RESISTIVE_LOWER = 400
+    RESISTIVE_UPPER = 1024
 
     def __init__(self):
         pass
@@ -35,7 +35,9 @@ class ADC:
                 return reading
             return 0
         elif type == "resistive":
-            return reading
+            if ADC.RESISTIVE_LOWER < reading < ADC.RESISTIVE_UPPER:
+                return reading
+            return 0
 
     @staticmethod
     def average_moisture(values:list):
