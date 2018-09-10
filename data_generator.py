@@ -37,7 +37,7 @@ class DataGenerator:
     def monitor_data(self, lock):
         while True:
             if self._water_system_obj.status == 1:
-                delay = 300
+                delay = 5
             else:
                 delay = 600
 
